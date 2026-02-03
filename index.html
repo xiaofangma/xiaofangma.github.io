@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马晓芳 Heather Ma | AI Narrative Storyteller</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a4a4a;
+            --accent: #d4a574;
+            --bg: #fafaf8;
+            --card-bg: #ffffff;
+            --border: #e5e5e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        header {
+            margin-bottom: 80px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .header-content {
+            border-left: 3px solid var(--accent);
+            padding-left: 30px;
+        }
+
+        h1 {
+            font-size: 52px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            font-weight: 300;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 24px;
+            font-size: 15px;
+            color: var(--secondary);
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .contact-info a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            margin-bottom: 70px;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+
+        h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .profile-text {
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--secondary);
+            font-weight: 300;
+            max-width: 720px;
+        }
+
+        .experience-item {
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .company-name {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .duration {
+            font-size: 14px;
+            color: var(--secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .role {
+            font-size: 17px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .highlights {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlights li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--secondary);
+        }
+
+        .highlights li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .expertise-card {
+            padding: 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .expertise-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .expertise-card p {
+            font-size: 15px;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--secondary);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 24px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .profile-text {
+                font-size: 19px;
+            }
+
+            .company-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            margin: 50px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>马晓芳 <span style="font-weight: 300; color: var(--secondary);">Heather Ma</span></h1>
+                <p class="subtitle">AI Narrative Storyteller</p>
+                <div class="contact-info">
+                    <a href="tel:18611855551">📞 186-1185-5551</a>
+                    <a href="mailto:maxiaofang@outlook.com">✉️ maxiaofang@outlook.com</a>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <h2>Profile</h2>
+            <p class="profile-text">
+                Strategic Communications & Brand Leader specializing in translating complex technologies, products, and strategies into clear, compelling narratives that drive understanding and impact. With 20 years of experience spanning tech journalism, corporate communications, and executive brand strategy.
+            </p>
+        </section>
+
+        <div class="decorative-line"></div>
+
+        <section>
+            <h2>Core Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3>AI Communications</h3>
+                    <p>Leading narrative strategy for frontier AI products and research labs, transforming deep tech into public-facing stories</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>Brand Building</h3>
+                    <p>Building communications functions from ground up, positioning enterprises as industry leaders</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>Crisis Management</h3>
+                    <p>Navigating high-stakes scenarios during executive transitions and policy risks</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>Media Relations</h3>
+                    <p>Deep industry connections and decade of investigative journalism across TMT sector</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="decorative-line"></div>
+
+        <section>
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <div class="company-header">
+                    <h3 class="company-name">Tencent 腾讯</h3>
+                    <span class="duration">2018.08 — Present</span>
+                </div>
+                <p class="role">Director of PR for Tencent Cloud | Product & Technology PR Lead for CSIG & TEG</p>
+                <ul class="highlights">
+                    <li>Spearheaded AI communications for Hunyuan foundation model, Tencent Yuanbao, and ima—driving Yuanbao from zero to tens of millions of daily active users</li>
+                    <li>Led external communications for frontier AI labs (Robotic X, AI Lab, Youtu Lab), transforming deep tech research into compelling public narratives and elevating Tencent's global AI reputation</li>
+                    <li>Built Tencent's B2B communications function from ground up, positioning Tencent Cloud among China's top three cloud brands</li>
+                    <li>Established "Tencent Cloud" as the leading B2B communication platform, driving developer engagement through technical storytelling</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <h3 class="company-name">Xunlei 迅雷</h3>
+                    <span class="duration">2014.03 — 2018.02</span>
+                </div>
+                <p class="role">Senior Director of PR & Brand | VP of Marketing | EVP</p>
+                <ul class="highlights">
+                    <li>Led Xunlei's IPO communications and brand transformation from "download tool" to "cloud computing" and "blockchain" technology company</li>
+                    <li>Built and managed PR/brand team, establishing comprehensive corporate communications framework</li>
+                    <li>Managed high-stakes crisis communications during executive transitions, turning reputational risks into strategic opportunities</li>
+                    <li>Developed capital market narratives that resonated with investors and stakeholders</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <h3 class="company-name">China Business News 第一财经日报</h3>
+                    <span class="duration">2005.03 — 2014.03</span>
+                </div>
+                <p class="role">Senior Reporter | Beijing Industry Desk Director</p>
+                <ul class="highlights">
+                    <li>Covered China's TMT sector evolution from PC to mobile internet era, producing thousands of investigative reports and executive interviews</li>
+                    <li>Led team of 20+ reporters covering consumer, automotive, real estate, and energy industries</li>
+                    <li>Built extensive media relationships and developed sharp insights into public sentiment and policy dynamics</li>
+                    <li>Established reputation for incisive analysis of business models, product strategies, and industry trends</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Heather Ma. Graduated from Nanjing University.</p>
+        </footer>
+    </div>
+</body>
+</html>

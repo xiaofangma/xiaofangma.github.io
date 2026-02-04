@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马晓芳 Heather Ma | The AI Storyteller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-primary: #111111;
+            --text-secondary: #444444;
+            --accent: #b84a39;
+            --line-color: #e5e5e5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.75;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+
+        /* --- 头部 Header --- */
+        header {
+            margin-bottom: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .header-content { flex: 1; }
+
+        .super-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', 'Playfair Display', serif;
+            font-size: 38px;
+            line-height: 1.35;
+            margin-bottom: 36px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 12px;
+        }
+
+        .profile-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 96%;
+        }
+
+        /* --- 头像 --- */
+        .avatar-placeholder {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #bbb;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .avatar-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 社交栏 --- */
+        .social-bar {
+            margin-top: 32px;
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .social-bar a {
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 2px;
+            transition: all 0.2s ease;
+        }
+        .social-bar a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* --- 通用板块 --- */
+        section { margin-bottom: 100px; }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--line-color);
+            padding-bottom: 12px;
+            font-weight: 600;
+        }
+
+        /* --- 思想 Philosophy --- */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .thought-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.4;
+            min-height: 50px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .thought-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            text-align: justify;
+            opacity: 0.9;
+        }
+
+        /* --- 职业历程 Milestone --- */
+        .milestone { margin-bottom: 50px; }
+
+        .milestone-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .milestone-year {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--accent);
+            width: 120px;
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .milestone-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #000;
+        }
+
+        .milestone-content .company {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #777;
+            margin-bottom: 12px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .milestone-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        /* --- 教育 Education --- */
+        .education-mini {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .education-mini img {
+            height: 36px;
+            margin-right: 14px;
+            mix-blend-mode: multiply; /* 让白底变透明 */
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 640px) {
+            .container { padding: 60px 20px; }
+            header { flex-direction: column-reverse; gap: 30px; margin-bottom: 60px; }
+            .avatar-placeholder { width: 100px; height: 100px; }
+            h1 { font-size: 30px; }
+            .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
+            .thought-card h3 { min-height: auto; display: block; }
+            .milestone-header { flex-direction: column; }
+            .milestone-year { margin-bottom: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="header-content">
+                <div class="super-title">Strategist · Storyteller · Leader</div>
+                
+                <h1>
+                    用技术叙事建立信任<br>
+                    用内容体系驱动增长
+                </h1>
+
+                <div style="margin-top: 36px;">
+                    <div class="profile-name">马晓芳 (Heather Ma)</div>
+                    <div class="profile-desc">
+                        20年媒体与公关从业经验。擅长从0到1搭建传播体系，将硬核技术转化为市场认知，推动AI与云计算产品的商业增长。
+                    </div>
+                </div>
+
+                <div class="social-bar">
+                    <a href="mailto:maxiaofang@outlook.com">Email Me</a>
+                    <a href="https://www.linkedin.com/in/xiaofangma/" target="_blank">LinkedIn</a>
+                    <a href="https://x.com/maxiaofang" target="_blank">Twitter / X</a>
+                </div>
+            </div>
+
+            <div class="avatar-placeholder">
+                -->
+                您的照片
+                </div>
+        </header>
+
+        <section>
+            <h2>My Philosophy</h2>
+            <div class="philosophy-grid">
+                
+                <div class="thought-card">
+                    <h3>专业是获得信任的<br>唯一路径</h3>
+                    <p>
+                        公关不仅是声量放大器，更是<b>战略雷达</b>。我坚持以冷静的<b>外部视角 (Outside-in)</b> 审视业务，将晦涩的“硬科技”转化为市场可感知的“价值叙事”，帮助企业锚定长期价值。
+                    </p>
+                </div>
+
+                <div class="thought-card">
+                    <h3>从文字传播到<br>内容营销</h3>
+                    <p>
+                        告别传统的“通稿思维”，拥抱算法时代的<b>“流量逻辑”</b>。我主张用多维媒介重构内容，通过<b>“场景种草”</b>让抽象技术在真实应用中落地，实现品牌从“被看见”到“被认同”的深度转化。
+                    </p>
+                </div>
+
+                <div class="thought-card">
+                    <h3>危机公关与<br>信任重建</h3>
+                    <p>
+                        媒体关系不仅是资源，更是信任储备。面对舆情，<b>真诚与透明</b>是化解风险的唯一捷径。我擅长将潜在的“技术灾难”转化为企业价值观的有力背书，在风暴中重建信任的基石。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Selected Journey</h2>
+
+            <div class="milestone">
+                <div class="milestone-header">
+                    <div class="milestone-year">2018 — NOW</div>
+                    <div class="milestone-content">
+                        <h3>The AI Awakening</h3>
+                        <span class="company">Tencent 腾讯 · 公关总监</span>
+                        <p>主导腾讯混元大模型与元宝APP的品牌战役。面对激烈的市场竞争，通过精准的场景营销，助力元宝DAU突破数千万。</p>
+                        <p>同时负责建立腾讯云 To B 传播体系，通过技术科普与开发者生态建设，确立行业前三的品牌心智。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-header">
+                    <div class="milestone-year">2014 — 2018</div>
+                    <div class="milestone-content">
+                        <h3>Redefining a Legacy Brand</h3>
+                        <span class="company">Xunlei 迅雷 · 市场副总裁</span>
+                        <p>负责迅雷美股上市的整体传播策略。通过重构商业故事，成功将品牌认知从单一的“下载工具”升级为拥有核心技术的“云计算与区块链企业”。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-header">
+                    <div class="milestone-year">2005 — 2014</div>
+                    <div class="milestone-content">
+                        <h3>Witnessing the Golden Age</h3>
+                        <span class="company">China Business News 第一财经 · 产经部主任</span>
+                        <p>作为资深记者，亲历并记录了中国移动互联网的崛起。这种深厚的新闻素养，使我能够敏锐地捕捉公众情绪与政策风向。</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="education-mini">
+                <img src="nju-logo.png" alt="Nanjing University Logo">
+                <span>Nanjing University 南京大学 · 2000 ~ 2004</span>
+            </div>
+        </section>
+
+        <footer style="margin-top: 100px; font-size: 13px; color: #aaa; border-top: 1px solid #eee; padding-top: 30px;">
+            <p>&copy; 2026 Heather Ma. Built with Strategy & Code.</p>
+        </footer>
+
+    </div>
+</body>
+</html>
